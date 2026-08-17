@@ -28,6 +28,21 @@ como kernel con "Select Kernel" arriba a la derecha del notebook.
 Para regenerar las gráficas: **Kernel → Restart & Run All**. El notebook ya trae las
 figuras guardadas, así que también se ve bien sin ejecutarlo.
 
+## Exportar a PDF
+
+```bash
+pip install nbconvert
+./exportar_pdf.sh          # genera tarea3.pdf
+```
+
+El script convierte el notebook a HTML y lo imprime con Chromium en modo headless
+(usa Google Chrome si no hay Chromium). Le inyecta CSS de impresión para que las
+líneas largas de código no se corten en el borde de la página.
+
+No uses "Export to PDF" de la extensión Jupyter de VS Code: esa ruta exige `nbconvert`
+**y** una instalación de LaTeX (xelatex), y al faltar `nbconvert` VS Code intenta
+instalar `jupyter-client<8` y `pyzmq<25`, que no compilan en Python 3.13 / arm64.
+
 ## Estructura del notebook
 
 La primera celda de código define `graficar()`, que se usa en los problemas 5 a 8:
